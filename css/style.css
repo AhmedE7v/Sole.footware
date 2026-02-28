@@ -1,0 +1,964 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #111111;
+    --accent: #c5a059; /* ذهبي مطفي */
+    --transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+    --bg-color: #0a0a0a;
+    --text-color: #f5f5f5;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color var(--transition), color var(--transition);
+    margin: 0;
+    font-family: 'Playfair Display', serif; /* خط كلاسيكي للأحذية الفخمة */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.controls {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* زرار اللغة */
+.control-btn {
+    background: transparent;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.control-btn:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+}
+
+/* اللوجو والأنيميشن */
+.logo {
+    max-width: 300px;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.1));
+}
+
+[data-theme="dark"] .logo { filter: invert(1); }
+
+.hero-section {
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.cta-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin-top: 30px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.cta-btn:hover { letter-spacing: 4px; opacity: 0.9; }
+
+/* اتجاه الصفحة عند التحويل للعربي */
+[dir="rtl"] { font-family: 'Cairo', sans-serif; }
+/* --- إضافة خطوط فخمة من جوجل --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Cairo:wght@400;700&display=swap');
+
+:root {
+    --bg-color: #ffffff;
+    --text-color: #111111;
+    --accent: #c5a059; 
+    --glass-bg: rgba(255, 255, 255, 0.8);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+[data-theme="dark"] {
+    --bg-color: #0f0f0f;
+    --text-color: #f0f0f0;
+    --glass-bg: rgba(20, 20, 20, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Montserrat', sans-serif;
+    transition: background 0.5s ease;
+}
+
+/* --- تنسيق الـ Container للأزرار فوق --- */
+.controls {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--glass-bg);
+    padding: 10px 20px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px); /* تأثير الزجاج */
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+/* --- زرار اللغة الاحترافي --- */
+#lang-toggle {
+    background: transparent;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#lang-toggle:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+    transform: scale(1.05);
+}
+
+/* --- زرار الليل والنهار (Custom Toggle) --- */
+.theme-switch-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.theme-switch {
+    width: 50px;
+    height: 26px;
+    position: relative;
+}
+
+.theme-switch input { display: none; }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #333; /* لون غامق افتراضي */
+    transition: 0.4s;
+    border-radius: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
+.slider i {
+    font-size: 12px;
+    color: #f1c40f;
+    z-index: 1;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+input:checked + .slider {
+    background-color: #c5a059;
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+/* --- تحسين الـ Hero Button (Shop Now) --- */
+.cta-btn {
+    position: relative;
+    overflow: hidden;
+    background: var(--text-color);
+    color: var(--bg-color);
+    border: none;
+    padding: 18px 45px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 40px;
+}
+
+.cta-btn:hover {
+    letter-spacing: 5px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    transform: translateY(-3px);
+}
+
+/* لو الموقع عربي هنغير الخط */
+[dir="rtl"] body {
+    font-family: 'Cairo', sans-serif;
+}
+
+
+
+/* --- 1. الأساسيات المرنة (Flexible Basics) --- */
+html {
+    font-size: 16px; /* الأساس اللي هنقيس عليه */
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 14px; /* تصغير الخط قليلاً للموبايلات الصغيره */
+    }
+}
+
+/* --- 2. الـ Navbar المنساب (Fluid Navbar) --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px; /* تقليل الارتفاع للموبايل */
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%; /* نسبة مئوية للمسافات الجانبية عشان تناسب أي عرض */
+}
+
+.logo-small {
+    height: 35px; /* حجم مناسب للموبايل والديسكتوب */
+    width: auto;
+}
+
+/* --- 3. المنيو الذكية (Hamburger Menu Logic) --- */
+.menu-btn {
+    display: none; /* بتختفي في الشاشات الكبيرة */
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+/* شاشات الموبايل والتابلت (أقل من 992px) */
+@media (max-width: 992px) {
+    .menu-btn {
+        display: block; /* تظهر علامة المنيو */
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%; /* مخفية في البداية */
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--bg-color);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 50px;
+        align-items: center;
+        gap: 3rem;
+        transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-links.active {
+        left: 0; /* تظهر بانسيابية عند الضغط */
+    }
+
+    .nav-links a {
+        font-size: 1.2rem; /* تكبير الخط لللمس بالأصبع */
+    }
+}
+
+/* --- 4. محتوى الصفحة المنساب (Fluid Content) --- */
+.content-wrapper {
+    margin-top: 70px;
+    padding: 4rem 5%; /* مسافات مرنة */
+    text-align: center;
+    width: 100%;
+}
+
+.page-title {
+    /* clamp(أصغر حجم، الحجم المفضل، أكبر حجم) */
+    font-size: clamp(1.8rem, 5vw, 3.5rem); 
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+/* --- 5. شبكة المنتجات (Responsive Products Grid) --- */
+.products-grid {
+    display: grid;
+    /* بيعمل أعمدة أوتوماتيك بتصغر وتكبر حسب عرض الشاشة */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+/* --- 6. صور الأحذية (Responsive Images) --- */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+
+/* --- 1. الـ Navbar الفخم (Glassmorphism) --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--glass-bg); /* لون شفاف */
+    backdrop-filter: blur(20px) saturate(160%); /* تأثير زجاجي ضبابي مع تشبع للألوان */
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border-bottom: 1px solid var(--glass-border);
+    z-index: 2000;
+    padding: 0; /* الشغل كله جوه الـ container */
+    height: 85px; /* ارتفاع ثابت عشان التناسق */
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px; /* وسعنا الـ container لشكل أرقى */
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* اللوجو */
+.logo-small {
+    height: 45px; 
+    width: auto;
+    object-fit: contain;
+    transition: var(--bounce); /* حركة مرنة عند التفاعل */
+}
+
+/* الروابط (Links) */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 35px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 0.8rem; /* خط صغير بمسافات واسعة = فخامة */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    position: relative;
+    transition: var(--transition);
+}
+
+/* تأثير الخط اللي بيظهر تحت الرابط عند الـ Hover */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 0%;
+    height: 1.5px;
+    background-color: var(--accent);
+    transition: var(--transition);
+}
+
+.nav-links a:hover::after, 
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--accent);
+}
+
+/* أدوات التحكم (اللغة والثيم) */
+.nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* --- 2. الـ Hamburger Menu للموبايل --- */
+.menu-btn {
+    display: none; /* مخفي في الـ Desktop */
+    cursor: pointer;
+    font-size: 1.3rem;
+    color: var(--text-color);
+}
+
+@media (max-width: 992px) {
+    .menu-btn {
+        display: block;
+        order: 3; /* يخلي المنيو في الآخر */
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 85px;
+        left: -100%; /* مخفي بره الشاشة */
+        width: 100%;
+        height: calc(100vh - 85px);
+        background: var(--bg-color);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        z-index: 1500;
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .nav-container {
+        padding: 0 20px;
+    }
+}
+
+/* --- 3. تحسين الـ Main Content --- */
+.content-wrapper {
+    margin-top: 85px; /* نفس ارتفاع الـ Navbar */
+    padding: 80px 20px; /* مساحات واسعة للتنفس */
+    text-align: center;
+    min-height: 100vh;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.page-title {
+    font-family: 'Playfair Display', serif; /* خط كلاسيكي فخم */
+    font-size: clamp(2rem, 5vw, 3.5rem); /* حجم متناسق مع كل الشاشات */
+    margin-bottom: 15px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.shop-subtitle {
+    font-size: 1rem;
+    opacity: 0.6;
+    letter-spacing: 2px;
+    margin-bottom: 60px;
+}
+
+/* أنيميشن بسيط لظهور المحتوى */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- شبكة المنتجات (Responsive Grid) --- */
+.products-grid {
+    display: grid;
+    /* بيخلي الأعمدة تتغير أوتوماتيك: 1 في الموبايل، 2 في التابلت، 3 أو 4 في الشاشة الكبيرة */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* الكارت نفسه */
+.product-card {
+    background: var(--bg-color);
+    border: 1px solid var(--glass-border);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    /* أنيميشن الظهور بالترتيب */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s forwards;
+    animation-delay: var(--delay);
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+/* صورة المنتج */
+.product-image {
+    position: relative;
+    height: 350px;
+    overflow: hidden;
+    background: #f9f9f9;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.1);
+}
+
+/* تأثير الـ Overlay */
+.product-overlay {
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    width: 100%;
+    background: var(--text-color);
+    color: var(--bg-color);
+    padding: 15px;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: 0.4s ease;
+}
+
+.product-card:hover .product-overlay {
+    bottom: 0;
+}
+
+/* معلومات المنتج */
+.product-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.product-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.product-info p {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    margin-bottom: 10px;
+}
+
+.product-info .price {
+    display: block;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+/* أنيميشن الظهور */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* تحسين للموبايل */
+@media (max-width: 480px) {
+    .product-image {
+        height: 300px; /* تقليل الارتفاع شوية في الموبايل */
+    }
+    .products-grid {
+        gap: 15px;
+        padding: 10px;
+    }
+}
+
+/* --- 1. تفعيل السكرول ومنع القص --- */
+html, body {
+    height: auto; /* يسمح للجسم بالتمدد حسب المحتوى */
+    overflow-x: hidden; /* يمنع السكرول بالعرض */
+    overflow-y: auto; /* تفعيل السكرول بالطول */
+}
+
+/* --- 2. ستايل السكرول بار (Scrollbar Customization) --- */
+/* عشان ميبقاش شكل السكرول بار القديم بوظ شكل الموقع */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+
+/* --- 3. تعديل الـ Content Wrapper --- */
+.content-wrapper {
+    margin-top: 85px; /* مسافة عشان الـ Navbar ثابت فوق */
+    padding: 60px 5%; 
+    min-height: 100vh; /* يضمن إن الصفحة واخدة طول الشاشة على الأقل */
+    display: block; /* مهم جداً عشان الـ scroll يشتغل صح */
+}
+
+/* --- 4. تحسين شبكة المنتجات للموبايل --- */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* --- 5. أنيميشن الصور عند التحميل --- */
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #f0f0f0; /* لون مؤقت لحد ما الصورة تحمل */
+    transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+/* لو الموقع عربي (RTL) ظبط اتجاه النصوص */
+[dir="rtl"] .product-info {
+    text-align: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- About Page Styles --- */
+.about-section {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-hero {
+    margin-bottom: 80px;
+    animation: fadeIn 1.2s ease;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    text-align: left;
+    margin-bottom: 100px;
+}
+
+[dir="rtl"] .about-grid { text-align: right; }
+
+.about-text-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    color: var(--accent);
+}
+
+.about-text-content p {
+    line-height: 1.8;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+.featured-img {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 20px 20px 0px var(--accent); /* حركة ديزاين فخمة */
+}
+
+/* كروت الثقة */
+.trust-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 100px;
+}
+
+.trust-card {
+    padding: 40px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    transition: var(--transition);
+}
+
+.trust-card i {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.trust-card h3 { margin-bottom: 15px; }
+
+/* النص الطويل المطمئن */
+.long-text-reassurance {
+    background: var(--text-color);
+    color: var(--bg-color);
+    padding: 80px 10%;
+    border-radius: 10px;
+    margin-bottom: 100px;
+}
+
+.long-text-reassurance h2 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 30px;
+}
+
+.long-text-reassurance p {
+    font-size: 1.2rem;
+    line-height: 2;
+    font-style: italic;
+}
+
+/* الموبايل */
+@media (max-width: 992px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .about-image-box { order: -1; } /* الصورة تطلع فوق في الموبايل */
+}
+
+
+
+
+
+
+
+
+
+/* --- 1. Contact Page Styles --- */
+.contact-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-bottom: 100px;
+}
+
+.contact-hero {
+    margin-bottom: 80px;
+    animation: fadeInDown 1s ease;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: flex-start;
+}
+
+/* النموذج (Form) */
+.contact-form-wrapper h2, .contact-info-wrapper h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    letter-spacing: -1px;
+}
+
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-group input, .input-group textarea {
+    width: 100%;
+    padding: 18px;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: var(--main-transition);
+}
+
+.input-group input:focus, .input-group textarea:focus {
+    border-color: var(--accent);
+    outline: none;
+    background: var(--glass-bg);
+}
+
+.contact-form-wrapper .cta-btn {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* رسالة الشكر */
+.thank-you-message {
+    margin-top: 30px;
+    padding: 20px;
+    background: #e6fffa;
+    color: #1a7f71;
+    border: 1px solid #c3e6cb;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 600;
+}
+
+[data-theme="dark"] .thank-you-message {
+    background: #1a3c34;
+    color: #a7f3d0;
+    border-color: #2a614f;
+}
+
+/* --- 2. كروت المعلومات والثقة --- */
+.contact-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+/* كارت الـ 24 ساعه */
+.always-on-card {
+    background: var(--text-color);
+    color: var(--bg-color);
+    padding: 50px;
+    border-radius: 5px;
+}
+
+.always-on-card h2 { color: var(--accent); }
+.always-on-card p { opacity: 0.8; font-size: 1.1rem; line-height: 1.8; }
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: #39e68d;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+}
+
+/* أنيميشن النبضة (Pulse) الخضراء */
+.pulse {
+    width: 10px; height: 10px;
+    background: #39e68d;
+    border-radius: 50%;
+    position: relative;
+}
+
+.pulse::after {
+    content: '';
+    position: absolute;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    background: inherit;
+    border-radius: inherit;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    100% { transform: scale(3); opacity: 0; }
+}
+
+/* شبكة كروت السوشيال ميديا */
+.direct-contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.contact-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 30px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: var(--bounce);
+}
+
+.contact-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: var(--accent);
+}
+
+.contact-card i {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.contact-card.whatsapp i { color: #25d366; }
+.contact-card.email i { color: var(--accent); }
+.contact-card.facebook i { color: #1877f2; }
+.contact-card.instagram i { color: #e4405f; }
+
+.contact-card h3 { font-size: 1.1rem; margin-bottom: 5px; }
+.contact-card p { font-size: 0.85rem; opacity: 0.7; }
+
+/* --- 3. تحسين الاستجابة للموبايل --- */
+@media (max-width: 992px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    .contact-info-wrapper { order: -1; } /* معلومات الثقة تظهر أولاً */
+    .direct-contact-grid { gap: 15px; }
+}

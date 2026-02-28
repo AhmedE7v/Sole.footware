@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soleé | Contact Our Team</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="contact-page">
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="Soleé" class="logo-small">
+            </div>
+            <div class="menu-btn" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" data-key="nav_home">Home</a></li>
+                <li><a href="shop.html" data-key="nav_shop">Shop</a></li>
+                <li><a href="about.html" data-key="nav_about">About</a></li>
+                <li><a href="contact.html" class="active" data-key="nav_contact">Contact</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button id="lang-toggle" class="control-btn">العربية</button>
+                <div class="theme-switch-wrapper">
+                    <label class="theme-switch">
+                        <input type="checkbox" id="checkbox" />
+                        <div class="slider round">
+                            <i class="fas fa-sun"></i>
+                            <i class="fas fa-moon"></i>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content-wrapper contact-section">
+        <div class="contact-hero">
+            <h1 class="page-title" data-key="contact_title">We Are Here For You</h1>
+            <p class="contact-subtitle" data-key="contact_tagline">Your comfort, our commitment.</p>
+        </div>
+
+        <section class="contact-grid">
+            
+            <div class="contact-form-wrapper">
+                <h2 data-key="form_h">Send Us a Message</h2>
+                <form id="contactForm">
+                    <div class="input-group">
+                        <input type="text" id="name" required placeholder="Full Name">
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="email" required placeholder="Email Address">
+                    </div>
+                    <div class="input-group">
+                        <textarea id="message" rows="6" required placeholder="Your Inquiry..."></textarea>
+                    </div>
+                    <button type="submit" class="cta-btn" data-key="submit_btn">Send Message</button>
+                    <div id="thankYouMessage" class="thank-you-message" style="display:none;">
+                        <i class="fas fa-check-circle"></i> 
+                        <span data-key="thank_you_text">Thank you! Your message has been received. Our team will contact you very soon.</span>
+                    </div>
+                </form>
+            </div>
+
+            <div class="contact-info-wrapper">
+                <div class="always-on-card">
+                    <div class="status-indicator">
+                        <span class="pulse"></span> <span data-key="status_text">Always Online</span>
+                    </div>
+                    <h2 data-key="support_h">Premium 24/7 Support</h2>
+                    <p data-key="support_p">We are committed to providing the fastest and most reliable support in the footwear industry. Our professional team is available around the clock, 365 days a year, to assist you.</p>
+                </div>
+
+                <div class="direct-contact-grid">
+                    <a href="https://wa.me/201060101429" class="contact-card whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        <h3>WhatsApp</h3>
+                        <p data-key="wa_desc">Instant Reply</p>
+                    </a>
+                    
+                    <a href="mailto:solee.footwear@outlook.com" class="contact-card email" target="_blank">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p data-key="mail_desc">solee.footwear@outlook.com</p>
+                    </a>
+                    
+                    <a href="https://www.facebook.com/profile.php?id=61588016096618" class="contact-card facebook" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                        <h3>Facebook</h3>
+                        <p data-key="fb_desc">Like & Message</p>
+                    </a>
+                    
+                    <a href="https://www.instagram.com/solee.footwear/" class="contact-card instagram" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        <h3>Instagram</h3>
+                        <p data-key="ig_desc">Follow Our Style</p>
+                    </a>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
